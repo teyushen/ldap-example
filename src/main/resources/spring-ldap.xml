@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ldap="http://www.springframework.org/schema/ldap"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:ldap="http://www.springframework.org/schema/ldap"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/ldap 
     http://www.springframework.org/schema/ldap/spring-ldap.xsd">
 
-	<!-- <context:component-scan base-package="tw.dennis.spring.config" /> -->
-<!-- 	<context:component-scan base-package="com.ldap.repo" /> -->
-	<!-- <bean id="userService" class="tw.dennis.spring.service.UserService" 
-		/> -->
-	<!-- <context:annotation-config/> -->
+	<context:component-scan base-package="com.ldap.repo" />
+	<context:annotation-config/>
+	
 	<bean id="contextSource"
         class="org.springframework.ldap.core.support.LdapContextSource">
         <property name="url" value="ldap://localhost:10389" />
-        <property name="base" value="ou=system" />
-        <property name="userDn" value="uid=admin,ou=system" />
-        <property name="password" value="secret" />
+<!--         <property name="base" value="ou=system" /> -->
+<!--         <property name="base" value="dc=example,dc=com" /> -->
+<!--         <property name="userDn" value="uid=admin,ou=system" /> -->
+<!--         <property name="password" value="secret" /> -->
     </bean>
+    
     <bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
         <constructor-arg ref="contextSource" />
     </bean>
-<!-- 	<ldap:context-source url="ldap://localhost:10389" -->
-<!-- 		base="dc=example,dc=com" username="uid=admin,ou=system" password="secret" /> -->
 
-<!-- 	<ldap:ldap-template id="ldapTemplate" /> -->
-
-	<bean id="personRepo" class="com.ldap.repo.impl.PersonRepoImpl">
-		<property name="ldapTemplate" ref="ldapTemplate" />
-	</bean>
-	<bean id="user" class="com.ldap.repo.User">
-	</bean>
+	<bean id="personRepo" class="com.ldap.repo.impl.PersonRepoImpl"></bean>
+	
 </beans>        
