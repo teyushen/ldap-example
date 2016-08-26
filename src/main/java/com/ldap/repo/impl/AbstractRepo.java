@@ -31,11 +31,14 @@ public abstract class AbstractRepo implements Repo{
 
 	@Override
 	public List<Name> list(Name dn, Integer recursiveLimit) {
+		if(recursiveLimit <= 0) {
+			throw new IllegalArgumentException(String.format("can't see %s level under %s", recursiveLimit, dn)); 
+		}
 		List<Name> allDns = new ArrayList<>();
 		List<Name> thisRoundDns = list(dn);
 		
 		allDns.addAll(thisRoundDns);
-		for(int i=0; i<recursiveLimit; i++){
+		for (int i = 0; i < recursiveLimit - 1; i++) {
 			thisRoundDns = list(thisRoundDns);
 			allDns.addAll(thisRoundDns);
 		}

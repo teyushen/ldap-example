@@ -53,7 +53,7 @@ public class OrganizationRepoImplTest extends GenericTest{
 	@Test
 	public void test4List() {
 //		BASE_DN = "organizationName=department1,organizationName=technology department,dc=softleader,dc=com";
-		organizationRepo.list(LdapNameBuilder.newInstance(BASE_DN).build(), 3, true).forEach(System.out::println);
+		organizationRepo.list(LdapNameBuilder.newInstance(BASE_DN).build(), 1, false).forEach(System.out::println);
 	}
 
 //	@Test

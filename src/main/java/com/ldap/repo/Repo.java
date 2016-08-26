@@ -25,7 +25,7 @@ public interface Repo {
 			allDns.addAll(list(dn, false));
 		});
 		
-		return allDns.stream().distinct().collect(Collectors.toList());
+		return allDns;
 	}
 	
 	class NameClassPairMapperImpl implements NameClassPairMapper<Name> {

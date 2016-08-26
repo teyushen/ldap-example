@@ -63,14 +63,18 @@ public class OrganizationRepoImpl extends AbstractRepo implements OrganizationRe
 	
 	@Override
 	public List<Name> list(Name dn, Integer recursiveLimit, Boolean visibleSameLeval) {
+		if(recursiveLimit <= 0) {
+			throw new IllegalArgumentException(String.format("can't see %s level under %s", recursiveLimit, dn)); 
+		}
+
 		if(visibleSameLeval) {
 			return list(dn, recursiveLimit);
 		}else {
 			List<Name> allDns = new ArrayList<>();
 			List<Name> thisRoundDns = list(dn, visibleSameLeval);
-			
+
 			allDns.addAll(thisRoundDns);
-			for(int i=0; i<recursiveLimit; i++){
+			for (int i = 0; i < recursiveLimit - 1; i++) {
 				thisRoundDns = list(thisRoundDns);
 				allDns.addAll(thisRoundDns);
 			}
