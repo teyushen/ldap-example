@@ -28,13 +28,5 @@ public interface OrganizationRepo<T extends Organization> extends Repo{
 
 	public void delete(T entry);
 	
-	/**
-	 * 
-	 * @param dn
-	 * @param recursiveLimit
-	 * @param visibleSameLeval
-	 * @return
-	 */
-	public List<Name> list(Name dn, Integer recursiveLimit, Boolean visibleSameLeval);
 	
 }

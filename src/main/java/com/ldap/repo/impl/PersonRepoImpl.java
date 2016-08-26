@@ -58,14 +58,6 @@ public class PersonRepoImpl extends AbstractRepo implements PersonRepo<Person> {
 		
 	}
 
-	@Override
-	public List<Name> list(Name dn, Integer recursiveLimit) {
-		if(recursiveLimit <= 0) {
-			throw new IllegalArgumentException(String.format("can't see %s level under %s", recursiveLimit, dn)); 
-		}
-
-		return list(dn, recursiveLimit);
-	}
 	/////////////////////////////////////////////////////////////////////////////
 	
 	

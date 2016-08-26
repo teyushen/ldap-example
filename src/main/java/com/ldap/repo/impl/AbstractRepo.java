@@ -35,17 +35,30 @@ public abstract class AbstractRepo implements Repo{
 
 	@Override
 	public List<Name> list(Name dn, Integer recursiveLimit) {
+		return list(dn, recursiveLimit, true);
+	}
+	
+	
+	@Override
+	public List<Name> list(Name dn, Integer recursiveLimit, Boolean visibleSameLeval) {
 		if(recursiveLimit <= 0) {
 			throw new IllegalArgumentException(String.format("can't see %s level under %s", recursiveLimit, dn)); 
 		}
+
 		List<Name> allDns = new ArrayList<>();
-		List<Name> thisRoundDns = list(dn);
-		
+		List<Name> thisRoundDns;
+		if(visibleSameLeval) {
+			thisRoundDns = list(dn);
+		}else {
+			thisRoundDns = list(dn, visibleSameLeval);
+		}
 		allDns.addAll(thisRoundDns);
+		
 		for (int i = 0; i < recursiveLimit - 1; i++) {
 			thisRoundDns = list(thisRoundDns);
 			allDns.addAll(thisRoundDns);
 		}
+		
 		return allDns;
 	}
 	

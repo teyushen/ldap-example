@@ -81,7 +81,7 @@ public class PersonRepoImplTest extends GenericTest{
 
 	@Test
 	public void test7List() {
-		personRepo.list(LdapNameBuilder.newInstance(BASE_DN).build(), 3).forEach(System.out::println);
+		personRepo.list(LdapNameBuilder.newInstance(BASE_DN).build(), 1, true).forEach(System.out::println);
 	}
 
 	@Test
