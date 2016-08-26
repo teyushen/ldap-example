@@ -19,19 +19,5 @@ public interface Repo {
 
 	public List<Name> list(Name dn, Integer recursiveLimit);
 
-	default List<Name> list(List<Name> dns) {
-		List<Name> allDns = new ArrayList<>();
-		dns.stream().forEach(dn -> {
-			allDns.addAll(list(dn, false));
-		});
-		
-		return allDns;
-	}
 	
-	class NameClassPairMapperImpl implements NameClassPairMapper<Name> {
-		@Override
-		public Name mapFromNameClassPair(NameClassPair nameClassPair) throws NamingException {
-			return LdapNameBuilder.newInstance(nameClassPair.getNameInNamespace()).build();
-		}
-	}
 }

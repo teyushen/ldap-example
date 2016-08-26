@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Name;
+import javax.naming.NameClassPair;
+import javax.naming.NamingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.core.LdapTemplate;
+import org.springframework.ldap.core.NameClassPairMapper;
+import org.springframework.ldap.support.LdapNameBuilder;
 
 import com.ldap.repo.Repo;
 
@@ -43,5 +47,21 @@ public abstract class AbstractRepo implements Repo{
 			allDns.addAll(thisRoundDns);
 		}
 		return allDns;
+	}
+	
+	protected List<Name> list(List<Name> dns) {
+		List<Name> allDns = new ArrayList<>();
+		dns.stream().forEach(dn -> {
+			allDns.addAll(list(dn, false));
+		});
+		
+		return allDns;
+	}
+	
+	class NameClassPairMapperImpl implements NameClassPairMapper<Name> {
+		@Override
+		public Name mapFromNameClassPair(NameClassPair nameClassPair) throws NamingException {
+			return LdapNameBuilder.newInstance(nameClassPair.getNameInNamespace()).build();
+		}
 	}
 }
