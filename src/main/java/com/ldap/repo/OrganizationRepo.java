@@ -6,9 +6,9 @@ import javax.naming.Name;
 
 import org.springframework.ldap.query.LdapQuery;
 
-import com.ldap.pojo.Person;
+import com.ldap.pojo.Organization;
 
-public interface PersonRepo<T extends Person> extends Repo{
+public interface OrganizationRepo<T extends Organization> extends Repo{
 
 	public T findByDn(Name dn, Class<T> clazz);
 
@@ -28,5 +28,6 @@ public interface PersonRepo<T extends Person> extends Repo{
 
 	public void delete(T entry);
 	
+	public List<Name> list(Name dn, Integer recursiveLimit, Boolean visibleSameLeval);
 	
 }

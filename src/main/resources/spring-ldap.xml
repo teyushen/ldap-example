@@ -14,6 +14,7 @@
 	
 	<bean id="contextSource"
         class="org.springframework.ldap.core.support.LdapContextSource">
+<!--         <property name="url" value="ldap://softleader.com.tw:10389" /> -->
         <property name="url" value="ldap://localhost:10389" />
 <!--         <property name="base" value="ou=system" /> -->
 <!--         <property name="base" value="dc=example,dc=com" /> -->

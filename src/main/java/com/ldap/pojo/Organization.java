@@ -8,27 +8,20 @@ import org.springframework.ldap.odm.annotations.Attribute;
 import org.springframework.ldap.odm.annotations.Entry;
 import org.springframework.ldap.odm.annotations.Id;
 
-@Entry(objectClasses = {"top", "inetOrgPerson"})
-public class Person {
+@Entry(objectClasses = { "organization", "top" })
+public class Organization {
 
 	@Id
 	private Name dn;
 	
-	@Attribute(name="cn")
-	private String name;
-	
-	@Attribute(name="sn")
-	private String lastName;
-	
-	@Attribute(name="uid")
-	private String uid;
+	@Attribute(name="organizationName")
+	private String organizationName;
 	
 	@Attribute(name="userPassword")
 	private String password;
-	
+
 	@Attribute(name="description")
 	private String description;
-
 
 	public Name getDn() {
 		return dn;
@@ -38,28 +31,12 @@ public class Person {
 		this.dn = dn;
 	}
 
-	public String getName() {
-		return name;
+	public String getOrganizationName() {
+		return organizationName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getUid() {
-		return uid;
-	}
-
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
 	}
 
 	public String getPassword() {
@@ -78,13 +55,11 @@ public class Person {
 		this.description = description;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
-	
+
 	
 }
