@@ -8,12 +8,13 @@ import javax.naming.Name;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.query.LdapQuery;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.ldap.pojo.Person;
 import com.ldap.repo.PersonRepo;
 
-@Service
+@Repository
 public class PersonRepoImpl extends AbstractRepo implements PersonRepo<Person> {
 	
 	@Autowired

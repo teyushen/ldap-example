@@ -1,22 +1,18 @@
 package com.ldap.repo.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Name;
-import javax.naming.directory.Attributes;
-import javax.naming.directory.BasicAttribute;
-import javax.naming.directory.BasicAttributes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.ldap.query.LdapQuery;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.ldap.pojo.Organization;
 import com.ldap.repo.OrganizationRepo;
 
-@Service
+@Repository
 public class OrganizationRepoImpl extends AbstractRepo implements OrganizationRepo<Organization>{
 
 	@Autowired
